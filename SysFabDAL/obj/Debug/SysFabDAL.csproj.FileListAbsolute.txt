@@ -1,0 +1,12 @@
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\bin\Debug\SysFabDAL.dll.config
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\bin\Debug\SysFabDAL.dll
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\bin\Debug\SysFabDAL.pdb
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\bin\Debug\EntityFramework.dll
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\bin\Debug\SysFabEAL.dll
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\bin\Debug\SysFabEAL.pdb
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\bin\Debug\EntityFramework.xml
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\obj\Debug\SysFabDAL.csprojResolveAssemblyReference.cache
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\obj\Debug\SysFabDAL.dll
+C:\Proyectos\Farmacia\SysFab\SysFabDAL\obj\Debug\SysFabDAL.pdb

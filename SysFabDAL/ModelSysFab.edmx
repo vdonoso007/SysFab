@@ -1,0 +1,632 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SYSFABModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Catalog">
+          <Key>
+            <PropertyRef Name="Table" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Table" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="300" />
+          <Property Name="CodText" Type="varchar" MaxLength="10" />
+          <Property Name="CodNumeric" Type="int" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="DescWarehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="State" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CodeBar" Type="varchar" MaxLength="20" />
+          <Property Name="Name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ShortDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="300" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Line" Type="int" Nullable="false" />
+          <Property Name="Category" Type="int" Nullable="false" />
+          <Property Name="Presentation" Type="int" Nullable="false" />
+          <Property Name="UntMeasure" Type="int" Nullable="false" />
+          <Property Name="Minimum" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Maximum" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="ExpirationDate" Type="datetime" />
+          <Property Name="State" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Movements">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Warehouse" />
+            <PropertyRef Name="Master" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="Branch" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Warehouse" Type="int" Nullable="false" />
+          <Property Name="Master" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Journal" Type="varchar" MaxLength="20" />
+          <Property Name="Reference" Type="varchar" MaxLength="50" />
+          <Property Name="MovType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TrnType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="RegisterDate" Type="datetime" />
+          <Property Name="State" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Pharmacology">
+          <Key>
+            <PropertyRef Name="Master" />
+          </Key>
+          <Property Name="Master" Type="int" Nullable="false" />
+          <Property Name="Lab" Type="int" />
+          <Property Name="Composition" Type="varchar" MaxLength="200" />
+          <Property Name="ActionPharmacology" Type="varchar" MaxLength="200" />
+          <Property Name="Dose" Type="varchar" MaxLength="100" />
+          <Property Name="Treatment" Type="varchar" MaxLength="200" />
+          <Property Name="Prescription" Type="bit" />
+        </EntityType>
+        <EntityType Name="StockTakeInventory">
+          <Key>
+            <PropertyRef Name="StockTakeNro" />
+          </Key>
+          <Property Name="StockTakeNro" Type="int" Nullable="false" />
+          <Property Name="Responsable" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockTakeInventoryDetail">
+          <Key>
+            <PropertyRef Name="StockTakeNro" />
+            <PropertyRef Name="Warehouse" />
+            <PropertyRef Name="Master" />
+          </Key>
+          <Property Name="StockTakeNro" Type="int" Nullable="false" />
+          <Property Name="Warehouse" Type="int" Nullable="false" />
+          <Property Name="Master" Type="int" Nullable="false" />
+          <Property Name="Stock" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="StockOnHand" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="SrockDifference" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transfer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="TransferType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="TransferDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransferDetail">
+          <Key>
+            <PropertyRef Name="Transfer" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="Transfer" Type="int" Nullable="false" />
+          <Property Name="Line" Type="int" Nullable="false" />
+          <Property Name="SrcWarehouse" Type="int" Nullable="false" />
+          <Property Name="TrgWarehouse" Type="int" Nullable="false" />
+          <Property Name="Master" Type="int" Nullable="false" />
+          <Property Name="UntMeasure" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Warehouse" />
+            <PropertyRef Name="Master" />
+          </Key>
+          <Property Name="Branch" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Warehouse" Type="int" Nullable="false" />
+          <Property Name="Master" Type="int" Nullable="false" />
+          <Property Name="QtyOnHand" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="LastCost" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Branch" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Branch" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="DocumentType" Type="char" MaxLength="2" />
+          <Property Name="Customer" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="Order" />
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="Branch" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Line" Type="int" Nullable="false" />
+          <Property Name="Warehouse" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Product" Type="int" Nullable="false" />
+          <Property Name="UntMeasure" Type="varchar" MaxLength="10" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="PriceCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="DiscountCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SYSFABModelStoreContainer">
+          <EntitySet Name="Catalog" EntityType="Self.Catalog" Schema="gen" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="gen" store:Type="Tables" />
+          <EntitySet Name="DescWarehouse" EntityType="Self.DescWarehouse" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Master" EntityType="Self.Master" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Movements" EntityType="Self.Movements" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Pharmacology" EntityType="Self.Pharmacology" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="StockTakeInventory" EntityType="Self.StockTakeInventory" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="StockTakeInventoryDetail" EntityType="Self.StockTakeInventoryDetail" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Transfer" EntityType="Self.Transfer" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="TransferDetail" EntityType="Self.TransferDetail" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="sales" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="sales" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="sec" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SYSFABModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DescWarehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Master">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CodeBar" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Line" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="Int32" Nullable="false" />
+          <Property Name="Presentation" Type="Int32" Nullable="false" />
+          <Property Name="UntMeasure" Type="Int32" Nullable="false" />
+          <Property Name="Minimum" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Maximum" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+          <Property Name="State" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Movements">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Warehouse" />
+            <PropertyRef Name="Master" />
+            <PropertyRef Name="Year" />
+            <PropertyRef Name="Month" />
+          </Key>
+          <Property Name="Branch" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Warehouse" Type="Int32" Nullable="false" />
+          <Property Name="Master" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Journal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Reference" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MovType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TrnType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="RegisterDate" Type="DateTime" Precision="3" />
+          <Property Name="State" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Pharmacology">
+          <Key>
+            <PropertyRef Name="Master" />
+          </Key>
+          <Property Name="Master" Type="Int32" Nullable="false" />
+          <Property Name="Lab" Type="Int32" />
+          <Property Name="Composition" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ActionPharmacology" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Dose" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Treatment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Prescription" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Warehouse1" />
+            <PropertyRef Name="Master" />
+          </Key>
+          <Property Name="Branch" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Warehouse1" Type="Int32" Nullable="false" />
+          <Property Name="Master" Type="Int32" Nullable="false" />
+          <Property Name="QtyOnHand" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="LastCost" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Branch" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Branch" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DocumentType" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Customer" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="Order" />
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="Branch" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Line" Type="Int32" Nullable="false" />
+          <Property Name="Warehouse" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Product" Type="Int32" Nullable="false" />
+          <Property Name="UntMeasure" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="PriceCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Discount" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="DiscountCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DB_SYSFABEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DescWarehouse" EntityType="Self.DescWarehouse" />
+          <EntitySet Name="Master" EntityType="Self.Master" />
+          <EntitySet Name="Movements" EntityType="Self.Movements" />
+          <EntitySet Name="Pharmacology" EntityType="Self.Pharmacology" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Catalog" EntityType="SYSFABModel.Catalog" />
+          <EntitySet Name="Table" EntityType="SYSFABModel.Table" />
+          <EntitySet Name="User" EntityType="SYSFABModel.User" />
+          <EntitySet Name="StockTakeInventory" EntityType="SYSFABModel.StockTakeInventory" />
+          <EntitySet Name="StockTakeInventoryDetail" EntityType="SYSFABModel.StockTakeInventoryDetail" />
+          <EntitySet Name="Transfer" EntityType="SYSFABModel.Transfer" />
+          <EntitySet Name="TransferDetail" EntityType="SYSFABModel.TransferDetail" />
+        </EntityContainer>
+        <EntityType Name="Catalog">
+          <Key>
+            <PropertyRef Name="Table" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Table" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="CodText" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CodNumeric" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StockTakeInventory">
+          <Key>
+            <PropertyRef Name="StockTakeNro" />
+          </Key>
+          <Property Name="StockTakeNro" Type="Int32" Nullable="false" />
+          <Property Name="Responsable" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="StockTakeInventoryDetail">
+          <Key>
+            <PropertyRef Name="StockTakeNro" />
+            <PropertyRef Name="Warehouse" />
+            <PropertyRef Name="Master" />
+          </Key>
+          <Property Name="StockTakeNro" Type="Int32" Nullable="false" />
+          <Property Name="Warehouse" Type="Int32" Nullable="false" />
+          <Property Name="Master" Type="Int32" Nullable="false" />
+          <Property Name="Stock" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="StockOnHand" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="SrockDifference" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Transfer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="TransferType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TransferDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TransferDetail">
+          <Key>
+            <PropertyRef Name="Transfer" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="Transfer" Type="Int32" Nullable="false" />
+          <Property Name="Line" Type="Int32" Nullable="false" />
+          <Property Name="SrcWarehouse" Type="Int32" Nullable="false" />
+          <Property Name="TrgWarehouse" Type="Int32" Nullable="false" />
+          <Property Name="Master" Type="Int32" Nullable="false" />
+          <Property Name="UntMeasure" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SYSFABModelStoreContainer" CdmEntityContainer="DB_SYSFABEntities">
+          <EntitySetMapping Name="DescWarehouse">
+            <EntityTypeMapping TypeName="SYSFABModel.DescWarehouse">
+              <MappingFragment StoreEntitySet="DescWarehouse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Master">
+            <EntityTypeMapping TypeName="SYSFABModel.Master">
+              <MappingFragment StoreEntitySet="Master">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CodeBar" ColumnName="CodeBar" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Line" ColumnName="Line" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Presentation" ColumnName="Presentation" />
+                <ScalarProperty Name="UntMeasure" ColumnName="UntMeasure" />
+                <ScalarProperty Name="Minimum" ColumnName="Minimum" />
+                <ScalarProperty Name="Maximum" ColumnName="Maximum" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movements">
+            <EntityTypeMapping TypeName="SYSFABModel.Movements">
+              <MappingFragment StoreEntitySet="Movements">
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+                <ScalarProperty Name="Master" ColumnName="Master" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Journal" ColumnName="Journal" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="MovType" ColumnName="MovType" />
+                <ScalarProperty Name="TrnType" ColumnName="TrnType" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pharmacology">
+            <EntityTypeMapping TypeName="SYSFABModel.Pharmacology">
+              <MappingFragment StoreEntitySet="Pharmacology">
+                <ScalarProperty Name="Prescription" ColumnName="Prescription" />
+                <ScalarProperty Name="Master" ColumnName="Master" />
+                <ScalarProperty Name="Lab" ColumnName="Lab" />
+                <ScalarProperty Name="Composition" ColumnName="Composition" />
+                <ScalarProperty Name="ActionPharmacology" ColumnName="ActionPharmacology" />
+                <ScalarProperty Name="Dose" ColumnName="Dose" />
+                <ScalarProperty Name="Treatment" ColumnName="Treatment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouse">
+            <EntityTypeMapping TypeName="SYSFABModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Warehouse1" ColumnName="Warehouse" />
+                <ScalarProperty Name="Master" ColumnName="Master" />
+                <ScalarProperty Name="QtyOnHand" ColumnName="QtyOnHand" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LastCost" ColumnName="LastCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="SYSFABModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetail">
+            <EntityTypeMapping TypeName="SYSFABModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Line" ColumnName="Line" />
+                <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="UntMeasure" ColumnName="UntMeasure" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceCode" ColumnName="PriceCode" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="DiscountCode" ColumnName="DiscountCode" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Catalog">
+            <EntityTypeMapping TypeName="SYSFABModel.Catalog">
+              <MappingFragment StoreEntitySet="Catalog">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CodNumeric" ColumnName="CodNumeric" />
+                <ScalarProperty Name="CodText" ColumnName="CodText" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Table" ColumnName="Table" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table">
+            <EntityTypeMapping TypeName="SYSFABModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="SYSFABModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockTakeInventory">
+            <EntityTypeMapping TypeName="SYSFABModel.StockTakeInventory">
+              <MappingFragment StoreEntitySet="StockTakeInventory">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+                <ScalarProperty Name="StockTakeNro" ColumnName="StockTakeNro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockTakeInventoryDetail">
+            <EntityTypeMapping TypeName="SYSFABModel.StockTakeInventoryDetail">
+              <MappingFragment StoreEntitySet="StockTakeInventoryDetail">
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="SrockDifference" ColumnName="SrockDifference" />
+                <ScalarProperty Name="StockOnHand" ColumnName="StockOnHand" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Master" ColumnName="Master" />
+                <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+                <ScalarProperty Name="StockTakeNro" ColumnName="StockTakeNro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transfer">
+            <EntityTypeMapping TypeName="SYSFABModel.Transfer">
+              <MappingFragment StoreEntitySet="Transfer">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TransferType" ColumnName="TransferType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransferDetail">
+            <EntityTypeMapping TypeName="SYSFABModel.TransferDetail">
+              <MappingFragment StoreEntitySet="TransferDetail">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UntMeasure" ColumnName="UntMeasure" />
+                <ScalarProperty Name="Master" ColumnName="Master" />
+                <ScalarProperty Name="TrgWarehouse" ColumnName="TrgWarehouse" />
+                <ScalarProperty Name="SrcWarehouse" ColumnName="SrcWarehouse" />
+                <ScalarProperty Name="Line" ColumnName="Line" />
+                <ScalarProperty Name="Transfer" ColumnName="Transfer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

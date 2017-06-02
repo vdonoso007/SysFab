@@ -1,0 +1,10 @@
+C:\Proyectos\Farmacia\SysFab\SysFabBO\bin\Debug\SysFabBO.dll
+C:\Proyectos\Farmacia\SysFab\SysFabBO\bin\Debug\SysFabBO.pdb
+C:\Proyectos\Farmacia\SysFab\SysFabBO\bin\Debug\SysFabDAL.dll
+C:\Proyectos\Farmacia\SysFab\SysFabBO\bin\Debug\SysFabEAL.dll
+C:\Proyectos\Farmacia\SysFab\SysFabBO\bin\Debug\EntityFramework.dll
+C:\Proyectos\Farmacia\SysFab\SysFabBO\bin\Debug\SysFabDAL.pdb
+C:\Proyectos\Farmacia\SysFab\SysFabBO\bin\Debug\SysFabEAL.pdb
+C:\Proyectos\Farmacia\SysFab\SysFabBO\obj\Debug\SysFabBO.csprojResolveAssemblyReference.cache
+C:\Proyectos\Farmacia\SysFab\SysFabBO\obj\Debug\SysFabBO.dll
+C:\Proyectos\Farmacia\SysFab\SysFabBO\obj\Debug\SysFabBO.pdb
