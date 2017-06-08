@@ -31,24 +31,37 @@ namespace SysFabDAL
             }
         }
 
-        public void TransferToWarehouse(int TransferNro)
+        public Response TransferToWarehouse(int TransferNro)
         {
+            Response response = new Response();
             //For now i wanna update state of the transfer to T
             using (DB_SYSFABEntities db = new DB_SYSFABEntities())
             {
-                var trnToUpd = db.Transfer.Where(x => x.Id == TransferNro).SingleOrDefault();
-                if (trnToUpd != null)
+                try
                 {
-                    trnToUpd.Status = "T";
-                }
+                    var trnToUpd = db.Transfer.Where(x => x.Id == TransferNro).SingleOrDefault();
+                    if (trnToUpd != null)
+                    {
+                        trnToUpd.Status = "T";
+                    }
 
-                using (var dbCtx = new DB_SYSFABEntities())
+                    using (var dbCtx = new DB_SYSFABEntities())
+                    {
+                        dbCtx.Entry(trnToUpd).State = System.Data.Entity.EntityState.Modified;
+                        dbCtx.SaveChanges();
+                        response.Error = false;
+                        response.Message = "ok";
+                        response.Object = TransferNro;
+                    }
+                }
+                catch(Exception e)
                 {
-                    dbCtx.Entry(trnToUpd).State = System.Data.Entity.EntityState.Modified;
-                    dbCtx.SaveChanges();
+                    response.Error = true;
+                    response.Message = e.Message;
+                    response.Object = e;
                 }
-
             }
+            return response;
         }
 
         public bool GetTransferHeaderById(int Id)

@@ -2,3 +2,4 @@ C:\Proyectos\Farmacia\SysFab\SysFabEAL\bin\Debug\SysFabEAL.dll
 C:\Proyectos\Farmacia\SysFab\SysFabEAL\bin\Debug\SysFabEAL.pdb
 C:\Proyectos\Farmacia\SysFab\SysFabEAL\obj\Debug\SysFabEAL.dll
 C:\Proyectos\Farmacia\SysFab\SysFabEAL\obj\Debug\SysFabEAL.pdb
+C:\Proyectos\Farmacia\SysFab\SysFabEAL\obj\Debug\SysFabEAL.csprojResolveAssemblyReference.cache

@@ -186,18 +186,54 @@ namespace SysFabBO
             return resul;
         }
 
-        public static void TransferToWarehouse(int TransferNumber)
+        public static Response TransferToWarehouse(int TransferNumber)
         {
+            Response main = new Response();
             TransferDAL objTrnDAL = new TransferDAL();
             try
             {
-                objTrnDAL.TransferToWarehouse(TransferNumber);
+                Response response = objTrnDAL.TransferToWarehouse(TransferNumber);
+                if (!response.Error)
+                {
+                    List<TransferDetail> listTD = GetDetailById(TransferNumber);
+                    List<Movements> list = new List<Movements>();
+                    foreach (TransferDetail item in listTD)
+                    {
+                        Movements movement = new Movements()
+                        {
+                            Branch = "",
+                            Warehouse = item.SrcWarehouse,
+                            Master = item.Master,
+                            Year = DateTime.Now.Year,
+                            Month = DateTime.Now.Month,
+                            Journal = "",
+                            Reference = "",
+                            MovType = "E",
+                            TrnType = "I",
+                            TrnNumber = TransferNumber,
+                            Quantity = item.Quantity,
+                            Cost = 0,
+                            RegisterDate = DateTime.Today,
+                            State = "R"
+                        };
+                        list.Add(movement);
+                    }
+                    Response responseBatch = BOWarehouse.CreateListMovement(list);
+                    main = responseBatch;
+                }
+                else
+                {
+                    main = response;
+                }
             }
             catch(Exception e)
             {
-
+                main.Error = true;
+                main.Message = e.Message;
+                main.Object = e;
             }
             finally { objTrnDAL = null; }
+            return main;
         }
 
     }

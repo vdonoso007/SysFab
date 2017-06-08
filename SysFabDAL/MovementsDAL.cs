@@ -10,6 +10,32 @@ namespace SysFabDAL
     public class MovementsDAL
     {
 
+        public Response InsertBatchMovements(List<Movements> listMovements)
+        {
+            Response response = new Response();
+            using (DB_SYSFABEntities db = new DB_SYSFABEntities())
+            {
+                try
+                {
+                    foreach (Movements item in listMovements)
+                    {
+                        db.Movements.Add(item);
+                    }
+                    db.SaveChanges();
+                    response.Error = false;
+                    response.Message = "ok";
+                    response.Object = listMovements;
+                }
+                catch (Exception e)
+                {
+                    response.Error = true;
+                    response.Message = e.Message;
+                    response.Object = e;
+                }
+            }
+            return response;
+        }
+
         public Response InsertMovement(Movements movement)
         {
             Response response = new Response();

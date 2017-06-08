@@ -16,6 +16,12 @@ namespace SysFabBO
             return objDLWh.GetListWarehouse();
         }
 
+        public static Response CreateListMovement(List<Movements> listMovements)
+        {
+            MovementsDAL objDLMv = new MovementsDAL();
+            return objDLMv.InsertBatchMovements(listMovements);
+        }
+
         public static Response CreateMovement(Movements movement)
         {
             MovementsDAL objDLMv = new MovementsDAL();
