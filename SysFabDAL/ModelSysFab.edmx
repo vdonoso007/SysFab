@@ -60,8 +60,9 @@
             <PropertyRef Name="Master" />
             <PropertyRef Name="Year" />
             <PropertyRef Name="Month" />
-            <PropertyRef Name="TrnNumber" />
+            <PropertyRef Name="MovType" />
             <PropertyRef Name="TrnType" />
+            <PropertyRef Name="TrnNumber" />
           </Key>
           <Property Name="Branch" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="Warehouse" Type="int" Nullable="false" />
@@ -70,9 +71,9 @@
           <Property Name="Month" Type="int" Nullable="false" />
           <Property Name="Journal" Type="varchar" MaxLength="20" />
           <Property Name="Reference" Type="varchar" MaxLength="50" />
-          <Property Name="TrnNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MovType" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="TrnType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TrnNumber" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="RegisterDate" Type="datetime" />
@@ -249,6 +250,8 @@
             <PropertyRef Name="Master" />
             <PropertyRef Name="Year" />
             <PropertyRef Name="Month" />
+            <PropertyRef Name="TrnType" />
+            <PropertyRef Name="MovType" />
             <PropertyRef Name="TrnNumber" />
           </Key>
           <Property Name="Branch" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
@@ -264,7 +267,7 @@
           <Property Name="Cost" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="RegisterDate" Type="DateTime" Precision="3" />
           <Property Name="State" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="TrnNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrnNumber" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Pharmacology">
           <Key>
@@ -627,7 +630,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
