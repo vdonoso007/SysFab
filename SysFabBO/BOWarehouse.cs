@@ -15,5 +15,12 @@ namespace SysFabBO
             WarehouseDAL objDLWh = new WarehouseDAL();
             return objDLWh.GetListWarehouse();
         }
+
+        public static Response CreateMovement(Movements movement)
+        {
+            MovementsDAL objDLMv = new MovementsDAL();
+            return objDLMv.InsertMovement(movement);
+        }
+
     }
 }

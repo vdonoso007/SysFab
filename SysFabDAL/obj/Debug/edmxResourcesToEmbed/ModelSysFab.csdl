@@ -35,6 +35,7 @@
       <PropertyRef Name="Master" />
       <PropertyRef Name="Year" />
       <PropertyRef Name="Month" />
+      <PropertyRef Name="TrnNumber" />
     </Key>
     <Property Name="Branch" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Warehouse" Type="Int32" Nullable="false" />
@@ -49,6 +50,7 @@
     <Property Name="Cost" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="RegisterDate" Type="DateTime" Precision="3" />
     <Property Name="State" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="TrnNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="Pharmacology">
     <Key>

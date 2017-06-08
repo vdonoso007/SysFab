@@ -27,5 +27,6 @@ namespace SysFabEAL
         public decimal Cost { get; set; }
         public Nullable<System.DateTime> RegisterDate { get; set; }
         public string State { get; set; }
+        public int TrnNumber { get; set; }
     }
 }

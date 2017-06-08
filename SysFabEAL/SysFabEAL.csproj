@@ -67,6 +67,7 @@
       <DependentUpon>ModelSysFab.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Response.cs" />
     <Compile Include="StockTakeInventory.cs">
       <DependentUpon>ModelSysFab.tt</DependentUpon>
     </Compile>
