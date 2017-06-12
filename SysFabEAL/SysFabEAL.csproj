@@ -83,6 +83,9 @@
     <Compile Include="TransferDetail.cs">
       <DependentUpon>ModelSysFab.tt</DependentUpon>
     </Compile>
+    <Compile Include="TransferReturn.cs">
+      <DependentUpon>ModelSysFab.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>ModelSysFab.tt</DependentUpon>
     </Compile>

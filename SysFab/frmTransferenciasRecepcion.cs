@@ -51,12 +51,16 @@ namespace SysFab
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count -1].Cells[0].Value = reg.Line;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[0].ReadOnly = true;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[1].Value = reg.Src;
+                grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[1].Tag = reg.SrcId;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[1].ReadOnly = true;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[2].Value = reg.Target;
+                grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[2].Tag = reg.TargetId;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[2].ReadOnly = true;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[3].Value = reg.Master;
+                grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[3].Value = reg.MasterId;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[3].ReadOnly = true;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[4].Value = reg.UntMeasure;
+                grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[4].Value = reg.UntMeasureId;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[4].ReadOnly = true;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[5].Value = reg.Qty;
                 grdDetailTransfer.Rows[grdDetailTransfer.Rows.Count - 1].Cells[5].ReadOnly = true;
@@ -94,6 +98,64 @@ namespace SysFab
                 //grdDetailTransfer.Rows[grdDetailTransfer.CurrentRow.Index].Cells["Seleccionar"].Value = true;
 
             }
+        }
+
+        private void btnMarcarTodos_Click(object sender, EventArgs e)
+        {
+            if (btnMarcarTodos.Text == "Marcar todos los items")
+            {
+                for (int i = 0; i < grdDetailTransfer.RowCount; i++)
+                {
+                    grdDetailTransfer.Rows[i].Cells[6].Value = true;
+                }
+                btnMarcarTodos.Text = "Desmarcar todos los items";
+            }
+            else
+            {
+                for (int i = 0; i < grdDetailTransfer.RowCount; i++)
+                {
+                    grdDetailTransfer.Rows[i].Cells[6].Value = false;
+                }
+                btnMarcarTodos.Text = "Marcar todos los items";
+            }
+            
+        }
+
+        private List<TransferReturn> GetItemsReceived()
+        {
+            List<TransferReturn> listResponse = new List<TransferReturn>(); 
+            for (int i = 0; i < grdDetailTransfer.RowCount; i++)
+            {
+                bool check = (bool)grdDetailTransfer.Rows[i].Cells[6].Value;
+                if (check)
+                {
+                    TransferReturn item = new TransferReturn()
+                    {
+                        Transfer = Convert.ToInt32(lvTransferenciasPendientes.SelectedItems[0].Text.Trim()),
+                        ReturnDate = DateTime.Today,
+                        Line = (int)grdDetailTransfer.Rows[i].Cells[0].Value,
+                        SrcWarehouse = (int)grdDetailTransfer.Rows[i].Cells[1].Value,
+                        TrgWarehouse = (int)grdDetailTransfer.Rows[i].Cells[2].Value,
+                        Master = (int)grdDetailTransfer.Rows[i].Cells[3].Value,
+                        UntMeasure = (int)grdDetailTransfer.Rows[i].Cells[4].Value,
+                        Quantity = (decimal)grdDetailTransfer.Rows[i].Cells[5].Value,
+                        User = "",
+                        RegisterDate = DateTime.Today
+                    };
+                    listResponse.Add(item);
+                }
+            }
+            return listResponse;
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -236,5 +236,26 @@ namespace SysFabBO
             return main;
         }
 
+        public static Response SaveTransferReturn(List<TransferReturn> listItemsToReturn)
+        {
+            Response response = new Response();
+            TransferReturnDAL objTrnReturn = new TransferReturnDAL();
+            try
+            {
+                response = objTrnReturn.InsertBatchTransferReturn(listItemsToReturn);
+            }
+            catch(Exception e)
+            {
+                response.Error = true;
+                response.Message = e.Message;
+                response.Object = e;
+            }
+            finally
+            {
+                objTrnReturn = null;
+            }
+            return response;
+        }
+
     }
 }

@@ -133,6 +133,23 @@
     <Property Name="UntMeasure" Type="int" Nullable="false" />
     <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
   </EntityType>
+  <EntityType Name="TransferReturn">
+    <Key>
+      <PropertyRef Name="Transfer" />
+      <PropertyRef Name="ReturnDate" />
+      <PropertyRef Name="Line" />
+    </Key>
+    <Property Name="Transfer" Type="int" Nullable="false" />
+    <Property Name="ReturnDate" Type="datetime" Nullable="false" />
+    <Property Name="Line" Type="int" Nullable="false" />
+    <Property Name="SrcWarehouse" Type="int" Nullable="false" />
+    <Property Name="TrgWarehouse" Type="int" Nullable="false" />
+    <Property Name="Master" Type="int" Nullable="false" />
+    <Property Name="UntMeasure" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="User" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="Warehouse">
     <Key>
       <PropertyRef Name="Branch" />
@@ -201,6 +218,7 @@
     <EntitySet Name="StockTakeInventoryDetail" EntityType="Self.StockTakeInventoryDetail" Schema="inv" store:Type="Tables" />
     <EntitySet Name="Transfer" EntityType="Self.Transfer" Schema="inv" store:Type="Tables" />
     <EntitySet Name="TransferDetail" EntityType="Self.TransferDetail" Schema="inv" store:Type="Tables" />
+    <EntitySet Name="TransferReturn" EntityType="Self.TransferReturn" Schema="inv" store:Type="Tables" />
     <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="inv" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="sales" store:Type="Tables" />
     <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="sales" store:Type="Tables" />

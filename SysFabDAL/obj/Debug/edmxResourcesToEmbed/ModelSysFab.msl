@@ -189,5 +189,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TransferReturn">
+      <EntityTypeMapping TypeName="SYSFABModel.TransferReturn">
+        <MappingFragment StoreEntitySet="TransferReturn">
+          <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UntMeasure" ColumnName="UntMeasure" />
+          <ScalarProperty Name="Master" ColumnName="Master" />
+          <ScalarProperty Name="TrgWarehouse" ColumnName="TrgWarehouse" />
+          <ScalarProperty Name="SrcWarehouse" ColumnName="SrcWarehouse" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+          <ScalarProperty Name="Transfer" ColumnName="Transfer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

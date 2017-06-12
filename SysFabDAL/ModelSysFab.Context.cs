@@ -39,5 +39,6 @@ namespace SysFabEAL
         public virtual DbSet<StockTakeInventoryDetail> StockTakeInventoryDetail { get; set; }
         public virtual DbSet<Transfer> Transfer { get; set; }
         public virtual DbSet<TransferDetail> TransferDetail { get; set; }
+        public virtual DbSet<TransferReturn> TransferReturn { get; set; }
     }
 }

@@ -190,7 +190,7 @@ namespace SysFabDAL
                              where a.Id == TransferNumber
                                 && a.Status == "T"
                                 && f.Table == 5
-                             select new { Line = b.Line, Src = c.Description, Target = d.Description, Master = e.Name, UntMeasure = f.Description, Qty = b.Quantity, Seleccionar = false, Observación = "" }).ToList<dynamic>();
+                             select new { Line = b.Line, SrcId = c.Id ,Src = c.Description, TargetId = d.Id, Target = d.Description, MasterId = e.Id, Master = e.Name, UntMeasureId = f.Id, UntMeasure = f.Description, Qty = b.Quantity, Seleccionar = false, Observación = "" }).ToList<dynamic>();
                                 
                 return result;
             }

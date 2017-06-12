@@ -74,6 +74,7 @@
           <Property Name="MovType" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="TrnType" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TrnNumber" Type="int" Nullable="false" />
+          <Property Name="Motive" Type="char" MaxLength="5" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Cost" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="RegisterDate" Type="datetime" />
@@ -137,6 +138,23 @@
           <Property Name="Master" Type="int" Nullable="false" />
           <Property Name="UntMeasure" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransferReturn">
+          <Key>
+            <PropertyRef Name="Transfer" />
+            <PropertyRef Name="ReturnDate" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="Transfer" Type="int" Nullable="false" />
+          <Property Name="ReturnDate" Type="datetime" Nullable="false" />
+          <Property Name="Line" Type="int" Nullable="false" />
+          <Property Name="SrcWarehouse" Type="int" Nullable="false" />
+          <Property Name="TrgWarehouse" Type="int" Nullable="false" />
+          <Property Name="Master" Type="int" Nullable="false" />
+          <Property Name="UntMeasure" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="User" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
@@ -206,6 +224,7 @@
           <EntitySet Name="StockTakeInventoryDetail" EntityType="Self.StockTakeInventoryDetail" Schema="inv" store:Type="Tables" />
           <EntitySet Name="Transfer" EntityType="Self.Transfer" Schema="inv" store:Type="Tables" />
           <EntitySet Name="TransferDetail" EntityType="Self.TransferDetail" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="TransferReturn" EntityType="Self.TransferReturn" Schema="inv" store:Type="Tables" />
           <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="inv" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="sales" store:Type="Tables" />
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="sales" store:Type="Tables" />
@@ -268,6 +287,7 @@
           <Property Name="RegisterDate" Type="DateTime" Precision="3" />
           <Property Name="State" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="TrnNumber" Type="Int32" Nullable="false" />
+          <Property Name="Motive" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="Pharmacology">
           <Key>
@@ -342,6 +362,7 @@
           <EntitySet Name="StockTakeInventoryDetail" EntityType="SYSFABModel.StockTakeInventoryDetail" />
           <EntitySet Name="Transfer" EntityType="SYSFABModel.Transfer" />
           <EntitySet Name="TransferDetail" EntityType="SYSFABModel.TransferDetail" />
+          <EntitySet Name="TransferReturn" EntityType="SYSFABModel.TransferReturn" />
         </EntityContainer>
         <EntityType Name="Catalog">
           <Key>
@@ -421,6 +442,23 @@
           <Property Name="UntMeasure" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
         </EntityType>
+        <EntityType Name="TransferReturn">
+          <Key>
+            <PropertyRef Name="Transfer" />
+            <PropertyRef Name="ReturnDate" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="Transfer" Type="Int32" Nullable="false" />
+          <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Line" Type="Int32" Nullable="false" />
+          <Property Name="SrcWarehouse" Type="Int32" Nullable="false" />
+          <Property Name="TrgWarehouse" Type="Int32" Nullable="false" />
+          <Property Name="Master" Type="Int32" Nullable="false" />
+          <Property Name="UntMeasure" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="User" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -460,6 +498,7 @@
           <EntitySetMapping Name="Movements">
             <EntityTypeMapping TypeName="SYSFABModel.Movements">
               <MappingFragment StoreEntitySet="Movements">
+                <ScalarProperty Name="Motive" ColumnName="Motive" />
                 <ScalarProperty Name="TrnNumber" ColumnName="TrnNumber" />
                 <ScalarProperty Name="Branch" ColumnName="Branch" />
                 <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
@@ -611,6 +650,22 @@
                 <ScalarProperty Name="TrgWarehouse" ColumnName="TrgWarehouse" />
                 <ScalarProperty Name="SrcWarehouse" ColumnName="SrcWarehouse" />
                 <ScalarProperty Name="Line" ColumnName="Line" />
+                <ScalarProperty Name="Transfer" ColumnName="Transfer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransferReturn">
+            <EntityTypeMapping TypeName="SYSFABModel.TransferReturn">
+              <MappingFragment StoreEntitySet="TransferReturn">
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UntMeasure" ColumnName="UntMeasure" />
+                <ScalarProperty Name="Master" ColumnName="Master" />
+                <ScalarProperty Name="TrgWarehouse" ColumnName="TrgWarehouse" />
+                <ScalarProperty Name="SrcWarehouse" ColumnName="SrcWarehouse" />
+                <ScalarProperty Name="Line" ColumnName="Line" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
                 <ScalarProperty Name="Transfer" ColumnName="Transfer" />
               </MappingFragment>
             </EntityTypeMapping>
